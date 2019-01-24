@@ -1,0 +1,10 @@
+D:\MuseumLog\MuseumLog\bin\Debug\MuseumLog.exe.config
+D:\MuseumLog\MuseumLog\bin\Debug\MuseumLog.exe
+D:\MuseumLog\MuseumLog\bin\Debug\MuseumLog.pdb
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.MuseumForm.resources
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.Properties.Resources.resources
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csproj.GenerateResource.cache
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csproj.CoreCompileInputs.cache
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.exe
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.pdb
+D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csprojAssemblyReference.cache
