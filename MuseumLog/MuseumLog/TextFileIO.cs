@@ -145,7 +145,8 @@ namespace MuseumLog
 
                 sb.AppendLine(string.Join(Separator.ToString(), values.ToArray()));
             }
-            return sb.ToString().Trim();
+            var abc = sb.ToString().Trim();
+            return (abc);
         }
 
         /// <summary>
@@ -164,11 +165,11 @@ namespace MuseumLog
         }
 
         /// <summary>
-        /// Serialize Append
+        /// Serialize Append to a file param path
         /// </summary>
         /// <param name="reader">reader</param>
         /// <param name="data">data</param>
-        public void AppendToFile(Stream stream, IList<T> data)
+        public void AppendToFile(Stream stream, IList<T> data,string path)
         {
             string[] columns;
             string line;
@@ -185,10 +186,12 @@ namespace MuseumLog
                 }
 
                 string dataToWrite = GetData(data, (rowNo + 1));
-                //use of file getter setter
-                using (StreamWriter sw = File.AppendText("VisitorInformation.csv"))
+               
+                using (StreamWriter sw = File.AppendText(path))
                 {
+                    sw.Write(Environment.NewLine);
                     sw.WriteLine(dataToWrite);
+                    sw.Close();
                 }
 
             }

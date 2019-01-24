@@ -309,6 +309,7 @@ namespace MuseumLog
             if (errorOccured == false)
             {
                 visitorList.Add(visitor);
+                bool abc = outTimepicker.Visible;
                 if (outTimepicker.Visible)
                     WriteFinalDataToFile(visitorList);
                 else
@@ -392,7 +393,7 @@ namespace MuseumLog
                     {
                         UseTextQualifier = true
                     };
-                    cs.AppendToFile(stream, visitorList);
+                    cs.AppendToFile(stream, visitorList, "VisitorInformation.csv");
                 }
             }
             else
@@ -420,7 +421,7 @@ namespace MuseumLog
                     {
                         UseTextQualifier = true
                     };
-                    cs.AppendToFile(stream, visitorList);
+                    cs.AppendToFile(stream, visitorList, "FinalVisitorInformation.csv");
                 }
             }
             else
