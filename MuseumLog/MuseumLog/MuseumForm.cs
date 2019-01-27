@@ -16,6 +16,9 @@ namespace MuseumLog
         }
         private void MuseumForm_Load(object sender, EventArgs e)
         {
+            Int64 ID = Settings.Default.tempVisitorID;
+            tempVisitorID.Text = ID.ToString();
+           
             DateTime dateTday = DateTime.Today.Date;
             dateToday.Text = dateTday.ToString("dd/MM/yyyy");
             if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6)
@@ -37,9 +40,9 @@ namespace MuseumLog
 
         private void NewEntryBtn_Click(object sender, EventArgs e)
         {
-            Int64 ID = Settings.Default.tempVisitorID;
+            long ID = Int64.Parse(tempVisitorID.Text);
             visitorID.Text = (ID + 1).ToString();
-            tempVisitorID.Text = (ID + 1).ToString();
+            tempVisitorID.Text = visitorID.Text;
             ResetEntryForm();
             resultText.Hide();
             reportPanel.Hide();
