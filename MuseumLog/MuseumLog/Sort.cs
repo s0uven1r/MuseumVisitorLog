@@ -64,7 +64,7 @@ namespace MuseumLog
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public List<WeeklyReport> QuickSortByTotalVisitor(List<WeeklyReport> list)
+        public List<WeeklyReport> QuickSortByTotalTimeSpent(List<WeeklyReport> list)
         {
             if (list.Count <= 1)
             {
@@ -82,9 +82,9 @@ namespace MuseumLog
 
             foreach (WeeklyReport item in list)
             {
-                int totalVisitor = item.TotalVisitor;
-                int totalVisitorPivot = pivot.TotalVisitor;
-                if (totalVisitor < totalVisitorPivot)
+                double totalTimeSpent = item.TotalTimeSpent;
+                double totalTimeSpentPivot = pivot.TotalTimeSpent;
+                if (totalTimeSpent < totalTimeSpentPivot)
                 {
                     less.Add(item);
                 }
@@ -93,7 +93,7 @@ namespace MuseumLog
                     greater.Add(item);
                 }
             }
-            return ConcatWeekly(QuickSortByTotalVisitor(less), pivot, QuickSortByTotalVisitor(greater));
+            return ConcatWeekly(QuickSortByTotalTimeSpent(less), pivot, QuickSortByTotalTimeSpent(greater));
         }
 
         public List<WeeklyReport> ConcatWeekly(List<WeeklyReport> less, WeeklyReport pivot, List<WeeklyReport> greater)

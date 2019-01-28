@@ -18,16 +18,23 @@ namespace MuseumLog
         {
             Int64 ID = Settings.Default.tempVisitorID;
             tempVisitorID.Text = ID.ToString();
-           
+
             DateTime dateTday = DateTime.Today.Date;
-            dateToday.Text = dateTday.ToString("dd/MM/yyyy");
-            if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6)
+            dateToday.Text = dateTday.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            inTimePicker.MinDate = DateTime.Parse("10:00:00 AM", CultureInfo.InvariantCulture);
+            inTimePicker.MaxDate = DateTime.Parse("05:00:00 PM", CultureInfo.InvariantCulture);
+            outTimepicker.MinDate = DateTime.Parse("10:00:00 AM", CultureInfo.InvariantCulture);
+            outTimepicker.MaxDate = DateTime.Parse("05:00:00 PM", CultureInfo.InvariantCulture);
+
+
+            if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6 || DateTime.Now.TimeOfDay > inTimePicker.MaxDate.TimeOfDay || DateTime.Now.TimeOfDay < inTimePicker.MinDate.TimeOfDay)
             {
                 groupBox2.Text = "Start Page";
                 resultText.Text = "Museum is closed";
                 resultText.Show();
                 newEntryBtn.Enabled = false;
-                reportBtn.Enabled = false;
+                //reportBtn.Enabled = false;
                 searchBtn.Enabled = false;
             }
             else
@@ -44,6 +51,7 @@ namespace MuseumLog
             visitorID.Text = (ID + 1).ToString();
             tempVisitorID.Text = visitorID.Text;
             ResetEntryForm();
+            inputGridView.Hide();
             resultText.Hide();
             reportPanel.Hide();
             newEntryPanel.Show();
@@ -56,6 +64,7 @@ namespace MuseumLog
             groupBox2.Text = "Search Result";
             reportPanel.Hide();
             newEntryPanel.Hide();
+            inputGridView.Hide();
             string searchValue = searchBox.Text;
             if (MuseumLog.Validate.ValidateEmailFormat(searchValue))
             {
@@ -72,8 +81,16 @@ namespace MuseumLog
         {
             resultText.Hide();
             newEntryPanel.Hide();
+            inputGridView.Hide();
             groupBox2.Text = "Report Section";
-            reportPanel.Show();
+            if (File.Exists("FinalVisitorInformation.csv"))
+            {
+                reportPanel.Show();
+            }
+            else
+            {
+                MessageBox.Show("Visitors were nor found.", "Error!");
+            }
         }
 
         private void DailyListBtn_Click(object sender, EventArgs e)
@@ -89,7 +106,7 @@ namespace MuseumLog
                 list = cs.ReadFromFile(stream);
             }
 
-            var date = reportDatePicker.Value.Date.ToString("dd/MM/yyyy");
+            var date = reportDatePicker.Value.Date.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             List<VisitorInfo> filteredList = new List<VisitorInfo>();
             foreach (VisitorInfo v in list)
             {
@@ -149,9 +166,17 @@ namespace MuseumLog
             }
 
             List<WeeklyReport> weekReport = GetWeekReport(filteredList);
-            MuseumLog.Sort sort = new MuseumLog.Sort();
+            //reportChart
+            reportChart.Series.Clear();
+            reportChart.Series.Add("Time Spent Per Day (In Minutes)");
 
-            BindingList<WeeklyReport> bindingList = new BindingList<WeeklyReport>(sort.QuickSortByTotalVisitor(weekReport));
+            foreach (WeeklyReport item in weekReport)
+            {
+                reportChart.Series["Time Spent Per Day (In Minutes)"].Points.AddXY(item.Day, item.TotalTimeSpent);
+            }
+
+            MuseumLog.Sort sort = new MuseumLog.Sort();
+            BindingList<WeeklyReport> bindingList = new BindingList<WeeklyReport>(sort.QuickSortByTotalTimeSpent(weekReport));
             BindingSource source = new BindingSource(bindingList, null);
             reportGridView.DataSource = source;
             reportGridView.Show();
@@ -171,7 +196,7 @@ namespace MuseumLog
                 list = cs.ReadFromFile(stream);
             }
 
-            var date = dailyDatePicker.Value.Date.ToString("dd/MM/yyyy");
+            var date = dailyDatePicker.Value.Date.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
             List<VisitorInfo> filteredList = new List<VisitorInfo>();
             foreach (VisitorInfo v in list)
             {
@@ -206,20 +231,28 @@ namespace MuseumLog
 
         private void CsvInput_Click(object sender, EventArgs e)
         {
+            List<VisitorInfo> visitorList = new List<VisitorInfo>();
             DialogResult result = csvOpenFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                List<VisitorInfo> visitorList = new List<VisitorInfo>();
                 using (var stream = new FileStream(csvOpenFileDialog.FileName, FileMode.Open, FileAccess.Read))
                 {
                     var cs = new TextFileIO<VisitorInfo>()
                     {
                         UseTextQualifier = true
                     };
-
                     visitorList = cs.ReadFromFile(stream);
                     WriteInitialDataToFile(visitorList);
                 }
+
+                BindingList<VisitorInfo> bindingList = new BindingList<VisitorInfo>(visitorList);
+                BindingSource source = new BindingSource(bindingList, null);
+                inputGridView.DataSource = source;
+                inputGridView.Columns["Day"].Visible = false;
+                inputGridView.Columns["TotalTime"].Visible = false;
+                inputGridView.Show();
+
+                MessageBox.Show("Visitors Successfully Added.", "Success!");
             }
         }
 
@@ -318,6 +351,7 @@ namespace MuseumLog
                 else
                     WriteInitialDataToFile(visitorList);
 
+                MessageBox.Show("Visitor Successfully Added.", "Success!");
                 newEntryBtn.PerformClick();
             }
 

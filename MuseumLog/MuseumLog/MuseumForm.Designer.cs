@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,16 +54,6 @@
             this.errTxtEmail = new System.Windows.Forms.Label();
             this.newEntryPanel = new System.Windows.Forms.Panel();
             this.tempVisitorID = new System.Windows.Forms.Label();
-            this.reportPanel = new System.Windows.Forms.Panel();
-            this.dailyDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.weeklyDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dailyReportBtn = new System.Windows.Forms.Button();
-            this.fromLabel = new System.Windows.Forms.Label();
-            this.reportDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.weeklyReportBtn = new System.Windows.Forms.Button();
-            this.dailyListBtn = new System.Windows.Forms.Button();
-            this.reportGridView = new System.Windows.Forms.DataGridView();
             this.visitorID = new System.Windows.Forms.Label();
             this.outTimepicker = new System.Windows.Forms.DateTimePicker();
             this.outTimelabel = new System.Windows.Forms.Label();
@@ -71,6 +68,16 @@
             this.dateToday = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.reportPanel = new System.Windows.Forms.Panel();
+            this.dailyDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.weeklyDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dailyReportBtn = new System.Windows.Forms.Button();
+            this.fromLabel = new System.Windows.Forms.Label();
+            this.reportDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.weeklyReportBtn = new System.Windows.Forms.Button();
+            this.dailyListBtn = new System.Windows.Forms.Button();
+            this.reportGridView = new System.Windows.Forms.DataGridView();
             this.csvOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.newEntryBtn = new System.Windows.Forms.Button();
             this.searchBox = new System.Windows.Forms.TextBox();
@@ -79,11 +86,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.resultText = new System.Windows.Forms.Label();
+            this.inputGridView = new System.Windows.Forms.DataGridView();
+            this.reportChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.newEntryPanel.SuspendLayout();
             this.reportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reportGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inputGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportChart)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -156,7 +167,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(629, 245);
+            this.saveBtn.Location = new System.Drawing.Point(595, 220);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(102, 34);
             this.saveBtn.TabIndex = 1;
@@ -166,7 +177,7 @@
             // 
             // csvInput
             // 
-            this.csvInput.Location = new System.Drawing.Point(148, 245);
+            this.csvInput.Location = new System.Drawing.Point(139, 262);
             this.csvInput.Name = "csvInput";
             this.csvInput.Size = new System.Drawing.Size(90, 25);
             this.csvInput.TabIndex = 0;
@@ -223,6 +234,7 @@
             // 
             // newEntryPanel
             // 
+            this.newEntryPanel.Controls.Add(this.inputGridView);
             this.newEntryPanel.Controls.Add(this.tempVisitorID);
             this.newEntryPanel.Controls.Add(this.visitorID);
             this.newEntryPanel.Controls.Add(this.outTimepicker);
@@ -254,7 +266,7 @@
             this.newEntryPanel.Controls.Add(this.label3);
             this.newEntryPanel.Location = new System.Drawing.Point(6, 19);
             this.newEntryPanel.Name = "newEntryPanel";
-            this.newEntryPanel.Size = new System.Drawing.Size(758, 293);
+            this.newEntryPanel.Size = new System.Drawing.Size(738, 438);
             this.newEntryPanel.TabIndex = 15;
             this.newEntryPanel.Visible = false;
             // 
@@ -268,131 +280,6 @@
             this.tempVisitorID.TabIndex = 25;
             this.tempVisitorID.Text = "001";
             this.tempVisitorID.Visible = false;
-            // 
-            // reportPanel
-            // 
-            this.reportPanel.Controls.Add(this.dailyDatePicker);
-            this.reportPanel.Controls.Add(this.weeklyDatePicker);
-            this.reportPanel.Controls.Add(this.label8);
-            this.reportPanel.Controls.Add(this.dailyReportBtn);
-            this.reportPanel.Controls.Add(this.fromLabel);
-            this.reportPanel.Controls.Add(this.reportDatePicker);
-            this.reportPanel.Controls.Add(this.weeklyReportBtn);
-            this.reportPanel.Controls.Add(this.dailyListBtn);
-            this.reportPanel.Controls.Add(this.reportGridView);
-            this.reportPanel.Location = new System.Drawing.Point(9, 19);
-            this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(716, 328);
-            this.reportPanel.TabIndex = 16;
-            this.reportPanel.Visible = false;
-            // 
-            // dailyDatePicker
-            // 
-            this.dailyDatePicker.Location = new System.Drawing.Point(513, 42);
-            this.dailyDatePicker.Name = "dailyDatePicker";
-            this.dailyDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.dailyDatePicker.TabIndex = 30;
-            // 
-            // weeklyDatePicker
-            // 
-            this.weeklyDatePicker.Location = new System.Drawing.Point(264, 41);
-            this.weeklyDatePicker.Name = "weeklyDatePicker";
-            this.weeklyDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.weeklyDatePicker.TabIndex = 29;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(491, 42);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(23, 17);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Of";
-            // 
-            // dailyReportBtn
-            // 
-            this.dailyReportBtn.Location = new System.Drawing.Point(494, 6);
-            this.dailyReportBtn.Name = "dailyReportBtn";
-            this.dailyReportBtn.Size = new System.Drawing.Size(111, 27);
-            this.dailyReportBtn.TabIndex = 27;
-            this.dailyReportBtn.Text = "Daily Report";
-            this.dailyReportBtn.UseVisualStyleBackColor = true;
-            this.dailyReportBtn.Click += new System.EventHandler(this.DailyReportBtn_Click);
-            // 
-            // fromLabel
-            // 
-            this.fromLabel.AutoSize = true;
-            this.fromLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromLabel.Location = new System.Drawing.Point(228, 42);
-            this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(40, 17);
-            this.fromLabel.TabIndex = 26;
-            this.fromLabel.Text = "From";
-            // 
-            // reportDatePicker
-            // 
-            this.reportDatePicker.Location = new System.Drawing.Point(10, 41);
-            this.reportDatePicker.Name = "reportDatePicker";
-            this.reportDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.reportDatePicker.TabIndex = 25;
-            // 
-            // weeklyReportBtn
-            // 
-            this.weeklyReportBtn.Location = new System.Drawing.Point(231, 8);
-            this.weeklyReportBtn.Name = "weeklyReportBtn";
-            this.weeklyReportBtn.Size = new System.Drawing.Size(111, 27);
-            this.weeklyReportBtn.TabIndex = 24;
-            this.weeklyReportBtn.Text = "Weekly Report";
-            this.weeklyReportBtn.UseVisualStyleBackColor = true;
-            this.weeklyReportBtn.Click += new System.EventHandler(this.WeeklyReportBtn_Click);
-            // 
-            // dailyListBtn
-            // 
-            this.dailyListBtn.Location = new System.Drawing.Point(10, 12);
-            this.dailyListBtn.Name = "dailyListBtn";
-            this.dailyListBtn.Size = new System.Drawing.Size(111, 27);
-            this.dailyListBtn.TabIndex = 23;
-            this.dailyListBtn.Text = "List of Visitor";
-            this.dailyListBtn.UseVisualStyleBackColor = true;
-            this.dailyListBtn.Click += new System.EventHandler(this.DailyListBtn_Click);
-            // 
-            // reportGridView
-            // 
-            this.reportGridView.AllowUserToAddRows = false;
-            this.reportGridView.AllowUserToDeleteRows = false;
-            this.reportGridView.AllowUserToResizeColumns = false;
-            this.reportGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.reportGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.reportGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.reportGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.reportGridView.Location = new System.Drawing.Point(10, 67);
-            this.reportGridView.Name = "reportGridView";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.reportGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.reportGridView.Size = new System.Drawing.Size(657, 250);
-            this.reportGridView.TabIndex = 22;
-            this.reportGridView.Visible = false;
             // 
             // visitorID
             // 
@@ -431,7 +318,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 249);
+            this.label6.Location = new System.Drawing.Point(10, 266);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 16);
             this.label6.TabIndex = 17;
@@ -535,6 +422,132 @@
             this.label5.TabIndex = 20;
             this.label5.Text = "Manual Input";
             // 
+            // reportPanel
+            // 
+            this.reportPanel.Controls.Add(this.reportChart);
+            this.reportPanel.Controls.Add(this.dailyDatePicker);
+            this.reportPanel.Controls.Add(this.weeklyDatePicker);
+            this.reportPanel.Controls.Add(this.label8);
+            this.reportPanel.Controls.Add(this.dailyReportBtn);
+            this.reportPanel.Controls.Add(this.fromLabel);
+            this.reportPanel.Controls.Add(this.reportDatePicker);
+            this.reportPanel.Controls.Add(this.weeklyReportBtn);
+            this.reportPanel.Controls.Add(this.dailyListBtn);
+            this.reportPanel.Controls.Add(this.reportGridView);
+            this.reportPanel.Location = new System.Drawing.Point(9, 19);
+            this.reportPanel.Name = "reportPanel";
+            this.reportPanel.Size = new System.Drawing.Size(732, 525);
+            this.reportPanel.TabIndex = 16;
+            this.reportPanel.Visible = false;
+            // 
+            // dailyDatePicker
+            // 
+            this.dailyDatePicker.Location = new System.Drawing.Point(513, 42);
+            this.dailyDatePicker.Name = "dailyDatePicker";
+            this.dailyDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.dailyDatePicker.TabIndex = 30;
+            // 
+            // weeklyDatePicker
+            // 
+            this.weeklyDatePicker.Location = new System.Drawing.Point(264, 41);
+            this.weeklyDatePicker.Name = "weeklyDatePicker";
+            this.weeklyDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.weeklyDatePicker.TabIndex = 29;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(491, 42);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 17);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Of";
+            // 
+            // dailyReportBtn
+            // 
+            this.dailyReportBtn.Location = new System.Drawing.Point(494, 6);
+            this.dailyReportBtn.Name = "dailyReportBtn";
+            this.dailyReportBtn.Size = new System.Drawing.Size(111, 27);
+            this.dailyReportBtn.TabIndex = 27;
+            this.dailyReportBtn.Text = "Daily Report";
+            this.dailyReportBtn.UseVisualStyleBackColor = true;
+            this.dailyReportBtn.Click += new System.EventHandler(this.DailyReportBtn_Click);
+            // 
+            // fromLabel
+            // 
+            this.fromLabel.AutoSize = true;
+            this.fromLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromLabel.Location = new System.Drawing.Point(228, 42);
+            this.fromLabel.Name = "fromLabel";
+            this.fromLabel.Size = new System.Drawing.Size(40, 17);
+            this.fromLabel.TabIndex = 26;
+            this.fromLabel.Text = "From";
+            // 
+            // reportDatePicker
+            // 
+            this.reportDatePicker.Location = new System.Drawing.Point(10, 41);
+            this.reportDatePicker.Name = "reportDatePicker";
+            this.reportDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.reportDatePicker.TabIndex = 25;
+            // 
+            // weeklyReportBtn
+            // 
+            this.weeklyReportBtn.Location = new System.Drawing.Point(231, 8);
+            this.weeklyReportBtn.Name = "weeklyReportBtn";
+            this.weeklyReportBtn.Size = new System.Drawing.Size(111, 27);
+            this.weeklyReportBtn.TabIndex = 24;
+            this.weeklyReportBtn.Text = "Weekly Report";
+            this.weeklyReportBtn.UseVisualStyleBackColor = true;
+            this.weeklyReportBtn.Click += new System.EventHandler(this.WeeklyReportBtn_Click);
+            // 
+            // dailyListBtn
+            // 
+            this.dailyListBtn.Location = new System.Drawing.Point(10, 12);
+            this.dailyListBtn.Name = "dailyListBtn";
+            this.dailyListBtn.Size = new System.Drawing.Size(111, 27);
+            this.dailyListBtn.TabIndex = 23;
+            this.dailyListBtn.Text = "List of Visitor";
+            this.dailyListBtn.UseVisualStyleBackColor = true;
+            this.dailyListBtn.Click += new System.EventHandler(this.DailyListBtn_Click);
+            // 
+            // reportGridView
+            // 
+            this.reportGridView.AllowUserToAddRows = false;
+            this.reportGridView.AllowUserToDeleteRows = false;
+            this.reportGridView.AllowUserToResizeColumns = false;
+            this.reportGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.reportGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.reportGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.reportGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            this.reportGridView.Location = new System.Drawing.Point(10, 67);
+            this.reportGridView.Name = "reportGridView";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.reportGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.reportGridView.Size = new System.Drawing.Size(657, 250);
+            this.reportGridView.TabIndex = 22;
+            this.reportGridView.Visible = false;
+            // 
             // csvOpenFileDialog
             // 
             this.csvOpenFileDialog.Filter = "\"CSV files (*.csv)|*.csv|Text files (*.txt)|*.txt\"";
@@ -595,12 +608,12 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.resultText);
             this.groupBox2.Controls.Add(this.reportPanel);
             this.groupBox2.Controls.Add(this.newEntryPanel);
+            this.groupBox2.Controls.Add(this.resultText);
             this.groupBox2.Location = new System.Drawing.Point(12, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(776, 353);
+            this.groupBox2.Size = new System.Drawing.Size(776, 554);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New Entry";
@@ -616,11 +629,65 @@
             this.resultText.Text = "Museum Management";
             this.resultText.Visible = false;
             // 
+            // inputGridView
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.inputGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.inputGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.inputGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            this.inputGridView.Location = new System.Drawing.Point(6, 305);
+            this.inputGridView.Name = "inputGridView";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.inputGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.inputGridView.Size = new System.Drawing.Size(691, 183);
+            this.inputGridView.TabIndex = 26;
+            this.inputGridView.Visible = false;
+            // 
+            // reportChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.reportChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.reportChart.Legends.Add(legend2);
+            this.reportChart.Location = new System.Drawing.Point(9, 323);
+            this.reportChart.Name = "reportChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            series2.Legend = "Legend1";
+            series2.Name = "Time Spent  Per Day (In minutes)";
+            this.reportChart.Series.Add(series2);
+            this.reportChart.Size = new System.Drawing.Size(658, 199);
+            this.reportChart.TabIndex = 31;
+            this.reportChart.Text = "Bar Graph";
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            title2.Name = "Bar Graph";
+            title2.Text = "Bar Graph";
+            this.reportChart.Titles.Add(title2);
+            // 
             // MuseumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 533);
+            this.ClientSize = new System.Drawing.Size(800, 658);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -637,6 +704,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inputGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -691,6 +760,8 @@
         private System.Windows.Forms.DateTimePicker weeklyDatePicker;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button dailyReportBtn;
+        private System.Windows.Forms.DataGridView inputGridView;
+        private System.Windows.Forms.DataVisualization.Charting.Chart reportChart;
     }
 }
 
