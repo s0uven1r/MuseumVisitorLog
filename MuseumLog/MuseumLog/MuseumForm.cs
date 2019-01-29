@@ -28,28 +28,28 @@ namespace MuseumLog
             outTimepicker.MaxDate = DateTime.Parse("05:00:00 PM", CultureInfo.InvariantCulture);
 
 
-            if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6 || DateTime.Now.TimeOfDay > inTimePicker.MaxDate.TimeOfDay || DateTime.Now.TimeOfDay < inTimePicker.MinDate.TimeOfDay)
-            {
-                groupBox2.Text = "Start Page";
-                resultText.Text = "Museum is closed";
-                resultText.Show();
-                newEntryBtn.Enabled = false;
-                //reportBtn.Enabled = false;
-                searchBtn.Enabled = false;
-            }
-            else
-            {
+            //if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6 || DateTime.Now.TimeOfDay > inTimePicker.MaxDate.TimeOfDay || DateTime.Now.TimeOfDay < inTimePicker.MinDate.TimeOfDay)
+            //{
+            //    groupBox2.Text = "Start Page";
+            //    resultText.Text = "Museum is closed";
+            //    resultText.Show();
+            //    newEntryBtn.Enabled = false;
+            //    //reportBtn.Enabled = false;
+            //    searchBtn.Enabled = false;
+            //}
+            //else
+            //{
                 groupBox2.Text = "Start Page";
                 resultText.Text = "Museum Visitor Log";
                 resultText.Show();
-            }
+           // }
         }
 
         private void NewEntryBtn_Click(object sender, EventArgs e)
         {
             long ID = Int64.Parse(tempVisitorID.Text);
             visitorID.Text = (ID + 1).ToString();
-            tempVisitorID.Text = visitorID.Text;
+            tempVisitorID.Text = (ID + 1).ToString();
             ResetEntryForm();
             inputGridView.Hide();
             resultText.Hide();
@@ -66,7 +66,7 @@ namespace MuseumLog
             newEntryPanel.Hide();
             inputGridView.Hide();
             string searchValue = searchBox.Text;
-            if (MuseumLog.Validate.ValidateEmailFormat(searchValue))
+            if (MuseumLog.Validate.ValidateNumber(searchValue))
             {
                 SearchInFile(searchValue);
             }
@@ -82,6 +82,7 @@ namespace MuseumLog
             resultText.Hide();
             newEntryPanel.Hide();
             inputGridView.Hide();
+            reportChart.Hide();
             groupBox2.Text = "Report Section";
             if (File.Exists("FinalVisitorInformation.csv"))
             {
@@ -127,6 +128,7 @@ namespace MuseumLog
             BindingList<VisitorInfo> bindingList = new BindingList<VisitorInfo>(filteredList);
             BindingSource source = new BindingSource(bindingList, null);
             reportGridView.DataSource = source;
+            reportChart.Hide();
             reportGridView.Show();
         }
 
@@ -166,7 +168,7 @@ namespace MuseumLog
             }
 
             List<WeeklyReport> weekReport = GetWeekReport(filteredList);
-            //reportChart
+           
             reportChart.Series.Clear();
             reportChart.Series.Add("Time Spent Per Day (In Minutes)");
 
@@ -174,6 +176,7 @@ namespace MuseumLog
             {
                 reportChart.Series["Time Spent Per Day (In Minutes)"].Points.AddXY(item.Day, item.TotalTimeSpent);
             }
+            reportChart.Show();
 
             MuseumLog.Sort sort = new MuseumLog.Sort();
             BindingList<WeeklyReport> bindingList = new BindingList<WeeklyReport>(sort.QuickSortByTotalTimeSpent(weekReport));
@@ -219,14 +222,13 @@ namespace MuseumLog
             BindingList<WeeklyReport> bindingList = new BindingList<WeeklyReport>(finalWeeklyReport);
             BindingSource source = new BindingSource(bindingList, null);
             reportGridView.DataSource = source;
+            reportChart.Hide();
             reportGridView.Show();
-
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             ValidateAndSaveData();
-
         }
 
         private void CsvInput_Click(object sender, EventArgs e)
@@ -354,7 +356,6 @@ namespace MuseumLog
                 MessageBox.Show("Visitor Successfully Added.", "Success!");
                 newEntryBtn.PerformClick();
             }
-
         }
 
         private void SearchInFile(string searchValue)
@@ -572,7 +573,7 @@ namespace MuseumLog
 
         private void MuseumForm_Closed(object sender, FormClosedEventArgs e)
         {
-            Settings.Default.tempVisitorID = Int32.Parse(tempVisitorID.Text);
+            Settings.Default.tempVisitorID = Int64.Parse(tempVisitorID.Text);
             Settings.Default.Save();
         }
     }

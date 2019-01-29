@@ -169,7 +169,7 @@ namespace MuseumLog
         /// </summary>
         /// <param name="reader">reader</param>
         /// <param name="data">data</param>
-        public void AppendToFile(Stream stream, IList<T> data,string path)
+        public void AppendToFile(Stream stream, IList<T> data, string path)
         {
             string[] columns;
             string line;
@@ -186,7 +186,7 @@ namespace MuseumLog
                 }
 
                 string dataToWrite = GetData(data, (rowNo + 1));
-               
+
                 using (StreamWriter sw = File.AppendText(path))
                 {
                     sw.Write(Environment.NewLine);
@@ -290,7 +290,14 @@ namespace MuseumLog
             List<string> matchedData = new List<string>();
             string[] columns;
             string line;
-
+            int rowNo = 0;
+            if (UseLineNumbers)
+            {
+                rowNo = 1;
+            }
+            if (UseTextQualifier) {
+                valueToSearch = string.Format("\"{0}\"", valueToSearch);
+            }
             try
             {
                 using (StreamReader sr = new StreamReader(stream))
@@ -298,7 +305,9 @@ namespace MuseumLog
                     columns = sr.ReadLine().Split(Separator);
                     while ((line = sr.ReadLine()) != null)
                     {
-                        if (line.Contains(valueToSearch))
+                        string[] splittedLine = line.Split(Separator);
+                        var abc = splittedLine[rowNo];
+                        if (splittedLine[rowNo] == valueToSearch)
                         {
                             matchedData.Add(line);
                         }
