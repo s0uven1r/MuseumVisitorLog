@@ -14,6 +14,7 @@ namespace MuseumLog
         {
             InitializeComponent();
         }
+
         private void MuseumForm_Load(object sender, EventArgs e)
         {
             Int64 ID = Settings.Default.tempVisitorID;
@@ -28,21 +29,21 @@ namespace MuseumLog
             outTimepicker.MaxDate = DateTime.Parse("05:00:00 PM", CultureInfo.InvariantCulture);
 
 
-            //if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6 || DateTime.Now.TimeOfDay > inTimePicker.MaxDate.TimeOfDay || DateTime.Now.TimeOfDay < inTimePicker.MinDate.TimeOfDay)
-            //{
-            //    groupBox2.Text = "Start Page";
-            //    resultText.Text = "Museum is closed";
-            //    resultText.Show();
-            //    newEntryBtn.Enabled = false;
-            //    //reportBtn.Enabled = false;
-            //    searchBtn.Enabled = false;
-            //}
-            //else
-            //{
+            if ((int)dateTday.DayOfWeek == 0 || (int)dateTday.DayOfWeek == 6 || DateTime.Now.TimeOfDay > inTimePicker.MaxDate.TimeOfDay || DateTime.Now.TimeOfDay < inTimePicker.MinDate.TimeOfDay)
+            {
+                groupBox2.Text = "Start Page";
+                resultText.Text = "Museum is closed";
+                resultText.Show();
+                newEntryBtn.Enabled = false;
+                //reportBtn.Enabled = false;
+                searchBtn.Enabled = false;
+            }
+            else
+            {
                 groupBox2.Text = "Start Page";
                 resultText.Text = "Museum Visitor Log";
                 resultText.Show();
-           // }
+            }
         }
 
         private void NewEntryBtn_Click(object sender, EventArgs e)
@@ -168,13 +169,12 @@ namespace MuseumLog
             }
 
             List<WeeklyReport> weekReport = GetWeekReport(filteredList);
-           
-            reportChart.Series.Clear();
-            reportChart.Series.Add("Time Spent Per Day (In Minutes)");
+
+            reportChart.Series["Time Spent  Per Day (In minutes)"].Points.Clear();
 
             foreach (WeeklyReport item in weekReport)
             {
-                reportChart.Series["Time Spent Per Day (In Minutes)"].Points.AddXY(item.Day, item.TotalTimeSpent);
+                reportChart.Series["Time Spent  Per Day (In minutes)"].Points.AddXY(item.Day, item.TotalTimeSpent);
             }
             reportChart.Show();
 
