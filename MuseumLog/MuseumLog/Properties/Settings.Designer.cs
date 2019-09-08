@@ -26,9 +26,9 @@ namespace MuseumLog.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int tempVisitorID {
+        public long tempVisitorID {
             get {
-                return ((int)(this["tempVisitorID"]));
+                return ((long)(this["tempVisitorID"]));
             }
             set {
                 this["tempVisitorID"] = value;

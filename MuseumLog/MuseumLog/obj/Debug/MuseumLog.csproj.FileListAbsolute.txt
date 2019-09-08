@@ -8,3 +8,13 @@ D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csproj.CoreCompileInputs.cache
 D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.exe
 D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.pdb
 D:\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csprojAssemblyReference.cache
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\bin\Debug\MuseumLog.exe.config
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\bin\Debug\MuseumLog.exe
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\bin\Debug\MuseumLog.pdb
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csprojAssemblyReference.cache
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.MuseumForm.resources
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.Properties.Resources.resources
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csproj.GenerateResource.cache
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.csproj.CoreCompileInputs.cache
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.exe
+D:\Git\MuseumVisitorLog\MuseumLog\MuseumLog\obj\Debug\MuseumLog.pdb
